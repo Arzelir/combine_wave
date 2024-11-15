@@ -19,30 +19,30 @@ def wave(amplitude: float, frequency: float, phase: float, time, distance) -> fl
 
     return amplitude * sin ((wave_number * distance) - (angular_velocity * time) + phase)
 
-# wave 1
+# signal 1
 amplitude1: float = float(input("Enter the amplitude (V) of signal D1: "))
 frequency1: float = float(input("Enter the frequency (Hz) of signal D1: "))
 phase1: float = float(input("Enter the phase (rad) of signal D1: "))
 
-# wave 2
+# signal 2
 amplitude2: float = float(input("Enter the amplitude (V) of signal D2: "))
 frequency2: float = float(input("Enter the frequency (Hz) of signal D2: "))
 phase2: float = float(input("Enter the phase (rad) of signal D2: "))
 
-# fixed distances
+# fixed values
 fixed_distance: float = float(input("Enter the fixed distance (x1): "))
 fixed_time: float = float(input("Enter the fixed time (t1): "))
 
 # domains
-time_domain: ndarray = linspace(0, 1, 1000)
-distance_domain: ndarray = linspace(0, 1, 1000)
+time_domain: ndarray = linspace(0, 1000, num=1000)
+distance_domain: ndarray = linspace(0, 3*(10**8), num=1000)
 
-# sum waves in time domain
+# sum waves in time domain at fixed distance
 wave1time: float64 = wave(amplitude1, frequency1, phase1, time_domain, fixed_distance)
 wave2time: float64 = wave(amplitude2, frequency2, phase2, time_domain, fixed_distance)
 sum_wave_time: float64 = wave1time + wave2time
 
-# sum waves in distance domain
+# sum waves in distance domain at fixed time
 wave1distance: float64 = wave(amplitude1, frequency1, phase1, fixed_time, distance_domain)
 wave2distance: float64 = wave(amplitude2, frequency2, phase2, fixed_time, distance_domain)
 sum_wave_distance: float64 = wave1distance + wave2distance
