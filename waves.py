@@ -30,8 +30,8 @@ frequency2: float = float(input("Enter the frequency (Hz) of signal D2: "))
 phase2: float = float(input("Enter the phase (rad) of signal D2: "))
 
 # fixed values
-fixed_distance: float = float(input("Enter the fixed distance (x1): "))
-fixed_time: float = float(input("Enter the fixed time (t1): "))
+fixed_distance: float = float(input("Enter the fixed distance (m) x1: "))
+fixed_time: float = float(input("Enter the fixed time (s) t1: "))
 
 # domains
 time_domain: ndarray = linspace(0, 1000, num=1000)
@@ -40,12 +40,12 @@ distance_domain: ndarray = linspace(0, 3*(10**8), num=1000)
 # sum waves in time domain at fixed distance
 wave1time: float64 = wave(amplitude1, frequency1, phase1, time_domain, fixed_distance)
 wave2time: float64 = wave(amplitude2, frequency2, phase2, time_domain, fixed_distance)
-sum_wave_time: float64 = wave1time + wave2time
+sum_waves_time: float64 = wave1time + wave2time
 
 # sum waves in distance domain at fixed time
 wave1distance: float64 = wave(amplitude1, frequency1, phase1, fixed_time, distance_domain)
 wave2distance: float64 = wave(amplitude2, frequency2, phase2, fixed_time, distance_domain)
-sum_wave_distance: float64 = wave1distance + wave2distance
+sum_waves_distance: float64 = wave1distance + wave2distance
 
 plt.figure(figsize=(12, 6))
 
@@ -53,18 +53,18 @@ plt.figure(figsize=(12, 6))
 plt.subplot(2, 1, 1)
 plt.plot(time_domain, wave1time, label='D1')
 plt.plot(time_domain, wave2time, label='D2')
-plt.plot(time_domain, sum_wave_time, label='Sum')
-plt.title(f'Signals in Time Domain at Fixed Distance x={fixed_distance}')
+plt.plot(time_domain, sum_waves_time, label='Sum')
+plt.title(f'Signals in Time Domain at Fixed Distance x={fixed_distance}m')
 plt.xlabel('Time (s)')
 plt.ylabel('Amplitude (V)')
 plt.legend()
 
-#plot waves in distance domain
+# plot waves in distance domain
 plt.subplot(2, 1, 2)
 plt.plot(distance_domain, wave1distance, label='D1')
 plt.plot(distance_domain, wave2distance, label='D2')
-plt.plot(distance_domain, sum_wave_distance, label='Sum')
-plt.title(f'Signals in Distance Domain at Fixed Time t={fixed_time}')
+plt.plot(distance_domain, sum_waves_distance, label='Sum')
+plt.title(f'Signals in Distance Domain at Fixed Time t={fixed_time}s')
 plt.xlabel('Distance (m)')
 plt.ylabel('Amplitude (V)')
 plt.legend()
